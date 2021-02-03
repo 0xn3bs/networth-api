@@ -37,7 +37,7 @@ class Erc20Evaluator implements Evaluator {
 
             await delay(1000);
 
-            const data = await fetchretry(`https://api.1inch.exchange/v2.0/quote?fromTokenAddress=${tokenInfo.address}&toTokenAddress=${daiContractAddress}&amount=${oneUnit}&complexityLevel=0`, {method: 'GET', retry: 3, pause: 1000});
+            const data = await fetchretry(`https://api.1inch.exchange/v2.0/quote?fromTokenAddress=${tokenInfo.address}&toTokenAddress=${daiContractAddress}&amount=${oneUnit}`, {method: 'GET', retry: 3, pause: 1000});
 
             const json = await data.json();
 
