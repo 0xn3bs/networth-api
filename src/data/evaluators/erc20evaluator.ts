@@ -51,4 +51,4 @@ class Erc20Evaluator implements Evaluator {
     }
 }
 
-export { Erc20Evaluator }
+export { Erc20Evaluator };

@@ -60,6 +60,7 @@
     "build.ts"
   ],
   "dependencies": {
+    "@apigrate/tdameritrade": "^1.1.0",
     "ccxt": "^1.41.50",
     "coinbase-pro-node": "^2.17.2",
     "coingecko-api": "^1.0.10",

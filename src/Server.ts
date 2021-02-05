@@ -1,5 +1,6 @@
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
+import compression from 'compression';
 import path from 'path';
 import helmet from 'helmet';
 
@@ -9,15 +10,26 @@ import 'express-async-errors';
 
 import BaseRouter from './routes';
 import logger from '@shared/Logger';
+import { AssetService } from './services/assetsservice';
+import { CacheService } from './services/cacheservice';
 
 const app = express();
 const { BAD_REQUEST } = StatusCodes;
 
-
-
 /************************************************************************************
  *                              Set basic express settings
  ***********************************************************************************/
+
+const cron = require('node-cron');
+
+cron.schedule('*/5 * * * *', async () => {
+    try {
+        const assets = await AssetService.getAssets();
+        CacheService.set("assets", assets, 300);
+    } catch (error) {
+        console.error(error);
+    }
+});
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -31,6 +43,7 @@ if (process.env.NODE_ENV === 'development') {
 // Security
 if (process.env.NODE_ENV === 'production') {
     app.use(helmet());
+    app.use(compression());
 }
 
 // Add APIs
@@ -44,8 +57,6 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
         error: err.message,
     });
 });
-
-
 
 /************************************************************************************
  *                              Serve front-end content
