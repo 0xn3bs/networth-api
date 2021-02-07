@@ -1,7 +1,7 @@
 import StatusCodes from 'http-status-codes';
 import e, { Request, Response, Router } from 'express';
 
-import { paramMissingError, IRequest } from '@shared/constants';
+import { paramMissingError } from '@shared/constants';
 
 const router = Router();
 
