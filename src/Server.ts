@@ -22,15 +22,14 @@ const { BAD_REQUEST } = StatusCodes;
 
 const cron = require('node-cron');
 
-
-// cron.schedule('*/5 * * * *', async () => {
-//     try {
-//         const assets = await AssetService.getAssets();
-//         CacheService.set("assets", assets, 300);
-//     } catch (error) {
-//         console.error(error);
-//     }
-// });
+cron.schedule('*/5 * * * *', async () => {
+    try {
+        const assets = await AssetService.getAssets();
+        CacheService.set("assets", assets, 300);
+    } catch (error) {
+        console.error(error);
+    }
+});
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
