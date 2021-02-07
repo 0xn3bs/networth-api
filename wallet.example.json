@@ -1,0 +1,59 @@
+{
+    "addresses": [
+        {
+            "type": "coinbase",
+            "name": "Coinbase",
+            "options": {
+                "apiKey": "", 
+                "secret": ""
+            }
+        },
+        {
+            "type": "coinbasepro",
+            "name": "Coinbasepro",
+            "options": {
+                "apiKey": "", 
+                "secret": "",
+                "password": ""
+            }
+        },
+        {
+            "type": "kraken",
+            "name": "Kraken",
+            "options": {
+                "apiKey": "",
+                "secret": ""
+            }
+        },
+        {
+            "type": "kucoin",
+            "name": "Kucoin",
+            "options": {
+                "apiKey": "",
+                "secret": ""
+            }
+        },
+        {
+            "type": "binance",
+            "name": "Binance",
+            "options": {
+                "apiKey": "",
+                "secret": ""
+            }
+        },
+        {
+            "type": "eth",
+            "options": {
+                "address": "",
+                "apiKey": ""
+            }
+        },
+        {
+            "type": "eth",
+            "options": {
+                "address": "",
+                "apiKey": ""
+            }
+        }
+    ]
+}

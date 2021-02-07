@@ -1,27 +1,18 @@
+import { TrackedAsset } from "@data/assets/trackedassets/trackedasset";
 import { Address } from "./address";
 import { AddressType } from "./addresstype";
-import { TrackedAsset } from "../assets/trackedassets/trackedasset";
 
-const ccxt = require ('ccxt');
 
-class CoinbaseAddress implements Address {
+class CryptoExchange implements Address {
     addressType: AddressType;
-    apiKey: string;
-    apiSecret: string;
     client: any;
+    name: string;
     assetPairs: any;
-
-    constructor(apiKey: string, apiSecret: string) {
-        this.addressType = AddressType.Kraken;
-        this.apiKey = apiKey;
-        this.apiSecret = apiSecret;
         
-        this.client = new ccxt.coinbase(
-            {
-                apiKey: this.apiKey,
-                secret: this.apiSecret
-            }
-        );
+    constructor(client: any, name: string) {
+        this.addressType = AddressType.CryptoExchange;
+        this.client = client;
+        this.name = name;
     }
 
     findAssetPair(assetpairs: any, base: string, quote: string): any {
@@ -42,16 +33,16 @@ class CoinbaseAddress implements Address {
     async getAssets(): Promise<Array<TrackedAsset>> {
         const trackedAssets = new Array<TrackedAsset>();
 
-        const coinbaseBalances = (await this.client.fetchBalance()).total;
+        const balances = (await this.client.fetchBalance()).total;
 
-        const keys = Object.keys(coinbaseBalances);
+        const keys = Object.keys(balances);
         
         for(let i = 0; i < keys.length; ++i) {
             let key = keys[i];
-            let value = coinbaseBalances[key];
+            let value = balances[key];
 
             if (value > 0) {
-                trackedAssets.push(new TrackedAsset(key, value, "Coinbase"));
+                trackedAssets.push(new TrackedAsset(key, value, this.name));
             }
         }
 
@@ -59,4 +50,4 @@ class CoinbaseAddress implements Address {
     }
 }
 
-export { CoinbaseAddress };
+export { CryptoExchange };

@@ -3,7 +3,7 @@ import { EvaluatorPipeline } from '@data/evaluators/evaluatorpipeline';
 import { Erc20Evaluator } from '@data/evaluators/erc20evaluator';
 import { DefaultEvaluator } from '@data/evaluators/defaultevaluator';
 
-import {addresses} from '../setup';
+import {getAddresses} from '../setup';
 
 class AssetService {
     async getAssets() {
@@ -12,7 +12,7 @@ class AssetService {
           new DefaultEvaluator()
         ]);
       
-        const wallet = new Wallet(addresses);
+        const wallet = new Wallet(getAddresses('wallet.json'));
         const assets = await wallet.getAssets();
       
         const responseAssets = await evaluatorPipeline.getAssets(assets);

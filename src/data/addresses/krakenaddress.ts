@@ -7,16 +7,18 @@ import { Client } from "kraken-api-node";
 class KrakenAddress implements Address {
     addressType: AddressType;
     apiKey: string;
-    apiSecret: string;
+    secret: string;
     kraken: any;
     assetPairs: any;
+    name: string;
 
-    constructor(apiKey: string, apiSecret: string) {
-        this.addressType = AddressType.Kraken;
+    constructor(apiKey: string, secret: string, name: string) {
+        this.addressType = AddressType.CryptoExchange;
         this.apiKey = apiKey;
-        this.apiSecret = apiSecret;
+        this.secret = secret;
+        this.name = name;
         
-        this.kraken = new Client(this.apiKey, this.apiSecret);
+        this.kraken = new Client(this.apiKey, this.secret);
     }
 
     findAssetPair(assetpairs: any, base: string, quote: string): any {

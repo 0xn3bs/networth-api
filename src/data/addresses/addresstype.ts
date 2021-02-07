@@ -2,9 +2,7 @@ enum AddressType {
     Bitcoin,
     Ethereum,
     TdAmeritrade,
-    Kraken,
-    Coinbase,
-    CoinbasePro
+    CryptoExchange
 }
 
 export { AddressType };
