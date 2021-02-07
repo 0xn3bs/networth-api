@@ -1,0 +1,9 @@
+{
+        "name": "networth-api",
+        "script": "./dist/index.js",
+        "env": {
+                "NODE_ENV": "production"
+        },
+        "args": "--env production",
+        "node_args": "-r module-alias/register"
+}
