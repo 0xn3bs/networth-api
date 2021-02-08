@@ -8,7 +8,7 @@ const router = Router();
 import { AssetService } from '../services/assetsservice';
 import { CacheService } from '../services/cacheservice';
 
-import { getChart } from '../services/chartservice';
+// import { getChart } from '../services/chartservice';
 import { ResponseAsset } from '@data/assets/responseasset';
 
 /*
@@ -43,11 +43,13 @@ router.get('/now', async (req: Request, res: Response) => {
   return res.status(StatusCodes.OK).json(assets);
 });
 
+/*
 router.get('/image', async (req: Request, res: Response) => {
   //const assets = new Array<ResponseAsset>();  //await AssetService.getAssets();
   const assets = await AssetService.getAssets();
   const chart = await getChart(assets);
   res.end(chart);
 });
+*/
 
 export default router;

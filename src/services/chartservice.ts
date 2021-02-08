@@ -1,6 +1,7 @@
 import { ResponseAsset } from "@data/assets/responseasset";
 import { TrackedAsset } from "@data/assets/trackedassets/trackedasset";
 
+/*
 const width = 400;
 const height = 400;
 
@@ -105,4 +106,4 @@ async function getChart(assets: {assets: Array<ResponseAsset>, total:number}): P
 
     return buf;
 }
-export { getChart };
+*/
