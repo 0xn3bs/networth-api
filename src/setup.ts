@@ -4,6 +4,7 @@ import { EthAddress } from '@data/addresses/ethaddress';
 import { TdAmeritradeAddress } from '@data/addresses/tdameritradeaddress';
 import { CryptoExchange } from '@data/addresses/cryptoexchange';
 import fs from 'fs';
+import { BtcAddress } from '@data/addresses/btcaddress';
 
 const ccxt = require ('ccxt');
 
@@ -27,6 +28,9 @@ function getAddresses(filename: string) {
         break;
       case 'eth':
         addresses.push(new EthAddress(address.options.address, address.options.apiKey));
+        break;
+      case 'btc':
+        addresses.push(new BtcAddress(address.options.address));
         break;
       default:
         const exchangeClass = ccxt[addressType];
