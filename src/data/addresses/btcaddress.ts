@@ -13,13 +13,18 @@ class BtcAddress implements Address {
         this.addressType = AddressType.Bitcoin;
     }
 
+    getAddressMasked () : string
+    {
+        return this.address.substring(0, 5) + "....";
+    }
+
     async getAssets(): Promise<Array<TrackedAsset>> {
         const data = await this.getData();
         const json = await data.json();
 
         const balance = json.balance / 100000000;
 
-        return new Array<TrackedAsset>(new TrackedAsset("BTC", balance, this.address));
+        return new Array<TrackedAsset>(new TrackedAsset("BTC", balance, this.getAddressMasked()));
     }
 
     async getData() {
