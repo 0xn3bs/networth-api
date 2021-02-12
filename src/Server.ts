@@ -25,7 +25,7 @@ const cron = require('node-cron');
 cron.schedule('*/5 * * * *', async () => {
     try {
         const assets = await AssetService.getAssets();
-        CacheService.set("assets", assets, 300);
+        CacheService.set("assets", assets);
     } catch (error) {
         console.error(error);
     }

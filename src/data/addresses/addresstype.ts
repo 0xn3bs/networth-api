@@ -2,7 +2,8 @@ enum AddressType {
     Bitcoin,
     Ethereum,
     TdAmeritrade,
-    CryptoExchange
+    CryptoExchange,
+    Stock
 }
 
 export { AddressType };

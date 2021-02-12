@@ -4,10 +4,12 @@ import { Erc20Evaluator } from '@data/evaluators/erc20evaluator';
 import { DefaultEvaluator } from '@data/evaluators/defaultevaluator';
 
 import {getAddresses} from '../setup';
+import { StockEvaluator } from '@data/evaluators/stockevaluator';
 
 class AssetService {
     async getAssets() {
         const evaluatorPipeline = new EvaluatorPipeline([
+          new StockEvaluator(),
           new Erc20Evaluator(),
           new DefaultEvaluator()
         ]);

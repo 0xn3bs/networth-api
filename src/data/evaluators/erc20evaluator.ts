@@ -18,9 +18,13 @@ class Erc20Evaluator implements Evaluator {
             }
 
             if(valuedAsset instanceof Erc20ValuedAsset) {
+                console.log(`Erc20Evaluator evaluating ${valuedAsset.ticker}`);
+
                 const erc20valuedAsset = valuedAsset as Erc20ValuedAsset;
 
                 const price = await this.get1InchPriceToDai(erc20valuedAsset.tokenInfo);
+                
+                console.log(`${valuedAsset.ticker} => ${price}`);
 
                 erc20valuedAsset.price = price;
                 erc20valuedAsset.value = erc20valuedAsset.count * erc20valuedAsset.price;
@@ -41,7 +45,10 @@ class Erc20Evaluator implements Evaluator {
 
             const json = await data.json();
 
+            console.log(json);
+
             const dai = json.toTokenAmount / Math.pow(10, json.toToken.decimals);
+
 
             return dai;
         }

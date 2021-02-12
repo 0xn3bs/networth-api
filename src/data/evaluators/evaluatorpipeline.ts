@@ -4,6 +4,8 @@ import { ValuedAsset } from "@data/assets/valuedassets/valuedasset";
 import { Erc20ValuedAsset } from "@data/assets/valuedassets/erc20valuedasset";
 import { Evaluator } from "./evaluator";
 import { ResponseAsset } from "@data/assets/responseasset";
+import { StockTrackedAsset } from "@data/assets/trackedassets/stocktrackedasset";
+import {StockValuedAsset} from "@data/assets/valuedassets/stockvaluedasset";
 
 class EvaluatorPipeline {
     evaluators: Evaluator[]
@@ -48,6 +50,9 @@ class EvaluatorPipeline {
             if(trackedAsset instanceof Erc20TrackedAsset){
                 const valuedAsset = new Erc20ValuedAsset(trackedAsset.ticker, 
                     trackedAsset.count, 0, 0, trackedAsset.address, trackedAsset.tokenInfo);
+                valuedAssets.push(valuedAsset);
+            } else if (trackedAsset instanceof StockTrackedAsset){
+                const valuedAsset = new StockValuedAsset(trackedAsset.ticker, trackedAsset.count, 0, 0, trackedAsset.address);
                 valuedAssets.push(valuedAsset);
             } else {
                 const valuedAsset = new ValuedAsset(trackedAsset.ticker, 

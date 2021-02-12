@@ -7,6 +7,7 @@ const CoinGeckoClient = new CoinGecko();
 
 class DefaultEvaluator implements Evaluator {
 	async hydrateValuedAssets(valuedAssets: ValuedAsset[]): Promise<void> {
+
         let tickers = new Set<string>();
 
         for(let i = 0; i < valuedAssets.length; ++i) {
@@ -31,6 +32,8 @@ class DefaultEvaluator implements Evaluator {
             }
 
             if(valuedAsset instanceof ValuedAsset && !(valuedAsset instanceof Erc20ValuedAsset)) {
+                console.log(`DefaultEvaluator evaluating ${valuedAsset.ticker}`);
+
                 if(valuedAsset.ticker in tickerPrices) {
                     valuedAsset.price = tickerPrices[valuedAsset.ticker];
                     valuedAsset.value = valuedAsset.price * valuedAsset.count;
