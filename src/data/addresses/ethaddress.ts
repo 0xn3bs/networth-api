@@ -47,6 +47,10 @@ class EthAddress implements Address {
             const ticker = tokenInfo.symbol;
             const decimals = Number(tokenInfo.decimals);
             const balance = token.balance / Math.pow(10, decimals);
+
+            if(tokenInfo.alert != null && tokenInfo.alert.includes("frozen")) {
+                continue;
+            }
             
             if(balance > 0) {
                 res.push(new Erc20TrackedAsset(ticker, balance, this.getAddressMasked(), tokenInfo));
