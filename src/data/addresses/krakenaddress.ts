@@ -71,7 +71,8 @@ class KrakenAddress implements Address {
 
     transformAssetId(assetId: string): string {
         const dict = {
-            "XXBT": "BTC"
+            "XXBT": "BTC",
+            "ZUSD": "USDT"
         };
 
         if(assetId in dict) {
